@@ -1,4 +1,6 @@
-# Warszta Wawa
+# warszta_wawa
+
+III - WarsztaWawa proof of concept
 
 ## Usage
 
@@ -13,6 +15,12 @@ Should work with:
 - [x] Web (no scroll)
 - [x] Android
 - [ ] iOS (not tested)
+
+## If you want to change the icon, change it in at `assets/images/icon.png` and run:
+
+```bash
+dart run flutter_launcher_icons
+```
 
 ## Tested with
 

@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    const Widget logo = Image(image: AssetImage('assets/img.png'));
+    const Widget logo = Image(image: AssetImage('assets/images/logo.png'));
 
     const categories = [
       (Icons.sports_volleyball_outlined, 'Sportowe'),
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.symmetric(vertical: 10),
             height: 100,
             child: ListView(
-                // This next line does the trick.
+              // This next line does the trick.
                 scrollDirection: Axis.horizontal,
                 children: categories.map((e) {
                   return Container(
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TileLayer(
                       urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       userAgentPackageName: 'com.example.app',
                     ),
                     MarkerLayer(markers: [

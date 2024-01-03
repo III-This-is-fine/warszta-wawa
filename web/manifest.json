@@ -1,11 +1,11 @@
 {
-    "name": "hello_flutter",
-    "short_name": "hello_flutter",
+    "name": "warszta_wawa",
+    "short_name": "warszta_wawa",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project - HelloFlutter.",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "description": "III - WarsztaWawa proof of concept",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
