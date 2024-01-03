@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:warszta_wawa/WebScroll.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Flutter Demo',
+      scrollBehavior: WebScroll(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -156,7 +158,6 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.symmetric(vertical: 10),
             height: 100,
             child: ListView(
-              // This next line does the trick.
                 scrollDirection: Axis.horizontal,
                 children: categories.map((e) {
                   return Container(
