@@ -1,16 +1,30 @@
-# hello_flutter
+# Warszta Wawa
 
-A new Flutter project - HelloFlutter.
+## Usage
 
-## Getting Started
+Open project with Android Studio. Build and run.
 
-This project is a starting point for a Flutter application.
+## Tested with
 
-A few resources to get you started if this is your first Flutter project:
+```
+Android Studio Hedgehog | 2023.1.1
+Build #AI-231.9392.1.2311.11076708, built on November 9, 2023
+Runtime version: 17.0.7+0-17.0.7b1000.6-10550314 amd64
+VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
+Linux 6.6.6-76060606-generic
+GC: G1 Young Generation, G1 Old Generation
+Memory: 2048M
+Cores: 12
+Registry:
+external.system.auto.import.disabled=true
+debugger.new.tool.window.layout=true
+ide.text.editor.with.preview.show.floating.toolbar=false
+ide.experimental.ui=true
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Non-Bundled Plugins:
+com.github.copilot (1.4.4.3955)
+Dart (231.9409)
+io.flutter (76.3.3)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Current Desktop: pop:GNOME
+```
