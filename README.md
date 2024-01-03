@@ -2,6 +2,7 @@
 
 ## Usage
 
+Install Flutter SDK, Android Studio, Dart and Flutter plugins.
 Open project with Android Studio. Build and run.
 
 > :warning: **!!IMPORTANT!!** Edit sources ONLY in `lib/`
