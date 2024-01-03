@@ -16,7 +16,9 @@ Should work with:
 - [x] Android
 - [ ] iOS (not tested)
 
-## If you want to change the icon, change it in at `assets/images/icon.png` and run:
+## Icon
+
+If you want to change the icon, change it in at `assets/images/icon.png` and run:
 
 ```bash
 dart run flutter_launcher_icons
