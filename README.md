@@ -5,11 +5,11 @@
 Open project with Android Studio. Build and run.
 
 Should work with:
-- [x] Linux
-- [ ] Windows
-- [x] Web
+- [x] Linux (no scroll)
+- [ ] Windows (not tested)
+- [x] Web (no scroll)
 - [x] Android
-- [ ] iOS
+- [ ] iOS (not tested)
 
 ## Tested with
 
