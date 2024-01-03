@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    const Widget logo = Image(image: AssetImage('assets/images/logo.png'));
+    const Widget logo = Image(image: AssetImage('assets/images/logo.png'), alignment: Alignment.center);
 
     const categories = [
       (Icons.sports_volleyball_outlined, 'Sportowe'),
@@ -115,7 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {},
         ),
-        title: logo,
+        title: Align(
+          alignment: Alignment.center,
+          child: logo,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
