@@ -152,7 +152,8 @@ class _MyHomePageState extends State<MyHomePage> {
             makeMap(context, markers),
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      bottomNavigationBar: makeNavigationBar(context),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
