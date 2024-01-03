@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:warszta_wawa/WebScroll.dart';
+
+import 'appBar.dart';
+import 'home/smallMap.dart';
+import 'home/types.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
     var tertiary = const Color.fromARGB(255, 0x61, 0x5A, 0xE5);
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Warszta Wawa',
       scrollBehavior: WebScroll(),
       theme: ThemeData(
         // This is the theme of your application.
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
             tertiary: tertiary),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Warszta Wawa'),
     );
   }
 }
@@ -91,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    const Widget logo = Image(image: AssetImage('assets/images/logo.png'), alignment: Alignment.center);
+    const Widget logo = Image(
+        image: AssetImage('assets/images/logo.png'),
+        alignment: Alignment.center);
 
     const categories = [
       (Icons.sports_volleyball_outlined, 'Sportowe'),
@@ -99,126 +103,55 @@ class _MyHomePageState extends State<MyHomePage> {
       (Icons.school_outlined, 'Naukowe'),
       (Icons.music_note_outlined, 'Muzyczne'),
       (Icons.chat_bubble_outline_outlined, 'Językowe'),
+      (Icons.fitness_center_outlined, 'Fitness'),
+      (Icons.accessibility_new_outlined, 'Taniec'),
+      (Icons.local_library_outlined, 'Inne'),
     ];
 
+    const markers = [
+      (52.2117577, 20.9823755),
+      (52.2117577, 21.9823755),
+    ];
+
+    var subtitle = (String text) => Padding(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          //apply padding to all four sides
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        // put image as title
-        leading: IconButton(
-          color: const Color.fromARGB(0, 0, 0, 0),
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+      appBar: appBar(logo),
+      body: SingleChildScrollView(
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // Test with Headline style
+            subtitle('Typy zajęć'),
+            types(categories),
+            subtitle('Mapa'),
+            makeMap(context, markers),
+          ],
         ),
-        title: Align(
-          alignment: Alignment.center,
-          child: logo,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {},
-            iconSize: 40,
-          )
-        ],
-        toolbarHeight: 80,
-      ),
-      body: Column(
-        // Column is also a layout widget. It takes a list of children and
-        // arranges them vertically. By default, it sizes itself to fit its
-        // children horizontally, and tries to be as tall as its parent.
-        //
-        // Column has various properties to control how it sizes itself and
-        // how it positions its children. Here we use mainAxisAlignment to
-        // center the children vertically; the main axis here is the vertical
-        // axis because Columns are vertical (the cross axis would be
-        // horizontal).
-        //
-        // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-        // action in the IDE, or press "p" in the console), to see the
-        // wireframe for each widget.
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Test with Headline style
-          const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            //apply padding to all four sides
-            child: Text(
-              'Typy zajęć',
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            height: 100,
-            child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: categories.map((e) {
-                  return Container(
-                    width: 90,
-                    // color: Colors.red,
-                    child: Column(
-                      children: [
-                        Icon(e.$1, size: 72),
-                        Text(e.$2),
-                      ],
-                    ),
-                  );
-                }).toList()),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            //apply padding to all four sides
-            child: Text(
-              'Mapa',
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SizedBox(
-              height: 200,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: FlutterMap(
-                  options: const MapOptions(
-                    initialCenter: LatLng(52.2117577, 20.9823755),
-                    initialZoom: 16,
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate:
-                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
-                    ),
-                    MarkerLayer(markers: [
-                      Marker(
-                        width: 80.0,
-                        height: 80.0,
-                        point: LatLng(52.2117577, 20.9823755),
-                        child: Container(
-                          child: Icon(Icons.circle, color: Theme.of(context).colorScheme.tertiary),
-                        ),
-                      ),
-                    ]),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
