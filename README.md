@@ -4,6 +4,13 @@
 
 Open project with Android Studio. Build and run.
 
+Should work with:
+- [x] Linux
+- [ ] Windows
+- [x] Web
+- [x] Android
+- [ ] iOS
+
 ## Tested with
 
 ```
