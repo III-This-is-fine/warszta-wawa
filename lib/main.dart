@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:warszta_wawa/WebScroll.dart';
 
@@ -108,10 +110,19 @@ class _MyHomePageState extends State<MyHomePage> {
       (Icons.local_library_outlined, 'Inne'),
     ];
 
-    const markers = [
-      (52.2117577, 20.9823755),
-      (52.2117577, 21.9823755),
-    ];
+    const N = 100;
+    const latMin = 52.1348782;
+    const latMax = 52.3219161;
+    const lonMin = 20.8023824;
+    const lonMax = 21.2087757;
+
+    var rng = new Random();
+    var markers = List.generate(
+        N,
+        (i) => (
+              rng.nextDouble() * (latMax - latMin) + latMin,
+              rng.nextDouble() * (lonMax - lonMin) + lonMin
+            ));
 
     var subtitle = (String text) => Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
@@ -150,7 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
             types(categories),
             subtitle('Mapa'),
             makeMap(context, markers),
-            SizedBox(height: 100), // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
+            SizedBox(height: 100),
+            // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
           ],
         ),
       ),
