@@ -150,10 +150,28 @@ class _MyHomePageState extends State<MyHomePage> {
             types(categories),
             subtitle('Mapa'),
             makeMap(context, markers),
+            SizedBox(height: 100), // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
           ],
         ),
       ),
-      bottomNavigationBar: makeNavigationBar(context),// This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: makeNavigationBar(context),
+      ),
+      extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton.large(
+        onPressed: () {},
+        tooltip: 'Szukaj',
+        splashColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
+        child: Icon(
+          Icons.search_outlined,
+          color: Theme.of(context).colorScheme.primaryContainer,
+        ),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

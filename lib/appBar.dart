@@ -34,30 +34,8 @@ var makeNavigationBar =
             icon: Icon(Icons.home_outlined),
             label: 'Strona główna',
           ),
-          bigSearch(context),
           NavigationDestination(
             icon: Icon(Icons.pin_drop_outlined),
             label: 'Mapa',
           ),
         ]);
-
-var bigSearch = (BuildContext context) {
-  var colors = Theme.of(context).colorScheme;
-  return OverflowBox(
-      maxWidth: 200,
-      maxHeight: 200,
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Icon(Icons.search_outlined, color: colors.primaryContainer, size: 70),
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(CircleBorder()),
-          padding: MaterialStateProperty.all(EdgeInsets.all(30)),
-          backgroundColor: MaterialStateProperty.all(colors.tertiary),
-          // <-- Button color
-          overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(MaterialState.pressed))
-              return colors.primary; // <-- Splash color
-          }),
-        ),
-      ));
-};

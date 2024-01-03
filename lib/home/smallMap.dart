@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 
 var makeMap = (BuildContext context, List<(double, double)> markers) => Padding(
   padding: const EdgeInsets.all(15.0),
@@ -17,8 +18,9 @@ var makeMap = (BuildContext context, List<(double, double)> markers) => Padding(
         children: [
           TileLayer(
             urlTemplate:
-            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=Udj6fSqM6nelUHq2HVmP',
             userAgentPackageName: 'com.example.app',
+            tileProvider: CancellableNetworkTileProvider(),
           ),
           MarkerLayer(
             markers: markers.map((e) {
