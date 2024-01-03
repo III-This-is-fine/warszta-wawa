@@ -4,9 +4,7 @@
 
 Open project with Android Studio. Build and run.
 
-!!IMPORTANT!!
-
-Edit sources ONLY in `lib/`
+> :warning: **!!IMPORTANT!!** Edit sources ONLY in `lib/`
 
 Should work with:
 - [x] Linux (no scroll)
