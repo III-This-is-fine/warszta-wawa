@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
-import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:warszta_wawa/data/Constants.dart';
+
+import '../cache/map_cache_common.dart';
 
 var makeMapWidget =
     (BuildContext context, List<(double, double)> _markers, double height) {
@@ -35,7 +35,7 @@ var makeMapWidget =
             TileLayer(
               urlTemplate: mapURL,
               userAgentPackageName: 'com.tif.warsztawawa',
-              tileProvider: FMTC.instance('mapStore').getTileProvider(),
+              tileProvider: provider,
             ),
             MarkerClusterLayerWidget(
               options: MarkerClusterLayerOptions(
