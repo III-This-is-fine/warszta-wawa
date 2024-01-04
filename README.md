@@ -10,9 +10,9 @@ Open project with Android Studio. Build and run.
 > :warning: **!!IMPORTANT!!** Edit sources ONLY in `lib/`
 
 Should work with:
-- [x] Linux (no scroll)
+- [x] Linux
 - [ ] Windows (not tested)
-- [x] Web (no scroll)
+- [x] Web
 - [x] Android
 - [ ] iOS (not tested)
 
