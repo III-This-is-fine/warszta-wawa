@@ -1,14 +1,23 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-import 'WebScroll.dart';
 import 'appBar.dart';
-import 'home/smallMap.dart';
-import 'home/types.dart';
+import 'data/CommonData.dart';
+import 'navs.dart';
+
+import 'package:flutter/gestures.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+class WebScroll extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices {
+    return {
+      PointerDeviceKind.touch,
+      PointerDeviceKind.mouse,
+    };
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -51,49 +60,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
   double _fab_size = 100.0;
+  CommonData? _commonData = null;
 
   @override
   Widget build(BuildContext context) {
     const Widget logo = Image(
         image: AssetImage('assets/images/logo.png'),
         alignment: Alignment.center);
-
-    const categories = [
-      (Icons.sports_volleyball_outlined, 'Sportowe'),
-      (Icons.palette_outlined, 'Artystyczne'),
-      (Icons.school_outlined, 'Naukowe'),
-      (Icons.music_note_outlined, 'Muzyczne'),
-      (Icons.chat_bubble_outline_outlined, 'Językowe'),
-      (Icons.fitness_center_outlined, 'Fitness'),
-      (Icons.accessibility_new_outlined, 'Taniec'),
-      (Icons.local_library_outlined, 'Inne'),
-    ];
-
-    const N = 100;
-    const latMin = 52.1348782;
-    const latMax = 52.3219161;
-    const lonMin = 20.8023824;
-    const lonMax = 21.2087757;
-
-    var rng = new Random();
-    var markers = List.generate(
-        N,
-        (i) => (
-              rng.nextDouble() * (latMax - latMin) + latMin,
-              rng.nextDouble() * (lonMax - lonMin) + lonMin
-            ));
-
-    var subtitle = (String text) => Padding(
-          padding: EdgeInsets.only(left: 15, right: 15),
-          //apply padding to all four sides
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
 
     void onDestinationSelected(int index) {
       setState(() {
@@ -111,36 +84,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
         appBar: appBar(logo),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              subtitle('Typy zajęć'),
-              types(categories),
-              subtitle('Mapa'),
-              makeMap(context, markers),
-              SizedBox(height: 100),
-              // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
-            ],
-          ),
+        body: makeNav(
+          context,
+          _commonData,
+          _selectedDestination,
         ),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: NavigationBar(
             onDestinationSelected: onDestinationSelected,
             selectedIndex: _selectedDestination,
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
             destinations: <Widget>[
               NavigationDestination(
                 selectedIcon: Icon(Icons.home),
                 icon: Icon(Icons.home_outlined),
                 label: 'Strona główna',
               ),
-              NavigationDestination(
-                selectedIcon: Icon(Icons.error, color: Colors.transparent),
-                icon: Icon(Icons.error, color: Colors.transparent),
-                label: '',
-              ),
+              Text(''),
               NavigationDestination(
                 icon: Icon(Icons.pin_drop_outlined),
                 label: 'Mapa',

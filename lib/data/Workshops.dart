@@ -1,4 +1,3 @@
-
 class Workshops {
   String title;
   String type;
