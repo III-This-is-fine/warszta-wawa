@@ -7,12 +7,13 @@ PreferredSizeWidget appBar(
   VoidCallback settingsCallback,
 ) {
   return AppBar(
-    leading: IconButton(
-      color: isBackVisible ? null : Colors.transparent,
-      icon: const Icon(Icons.arrow_back),
-      onPressed: backCallback,
-      iconSize: 40,
-    ),
+    leading: isBackVisible
+        ? IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: backCallback,
+            iconSize: 40,
+          )
+        : Text(''),
     title: Align(
       alignment: Alignment.center,
       child: logo,
