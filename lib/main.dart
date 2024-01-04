@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
+  bool _isBackVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -71,19 +72,34 @@ class _MyHomePageState extends State<MyHomePage> {
     void onDestinationSelected(int index) {
       setState(() {
         _selectedDestination = index;
+
         if (_selectedDestination == 1) {
           _fab_size = 130.0;
         } else {
           _fab_size = 100.0;
+        }
+
+        if (_selectedDestination == 0) {
+          _isBackVisible = false;
+        } else {
+          _isBackVisible = true;
         }
       });
     }
 
     const animationDuration = Duration(milliseconds: 250);
     const animationCurve = Curves.easeInOut;
+    _commonData = mockData();
 
     return Scaffold(
-        appBar: appBar(logo),
+        appBar: appBar(
+          logo,
+          _isBackVisible,
+          () {
+            onDestinationSelected(0);
+          },
+          () {},
+        ),
         body: makeNav(
           context,
           _commonData,

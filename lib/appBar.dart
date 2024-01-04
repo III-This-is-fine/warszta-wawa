@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 
-var appBar = (Widget logo) => AppBar(
-      leading: IconButton(
-        color: const Color.fromARGB(0, 0, 0, 0),
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () {},
-      ),
-      title: Align(
-        alignment: Alignment.center,
-        child: logo,
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {},
-          iconSize: 40,
-        )
-      ],
-      toolbarHeight: 80,
-    );
+PreferredSizeWidget appBar(
+  Widget logo,
+  bool isBackVisible,
+  VoidCallback backCallback,
+  VoidCallback settingsCallback,
+) {
+  return AppBar(
+    leading: IconButton(
+      color: isBackVisible ? null : Colors.transparent,
+      icon: const Icon(Icons.arrow_back),
+      onPressed: backCallback,
+      iconSize: 40,
+    ),
+    title: Align(
+      alignment: Alignment.center,
+      child: logo,
+    ),
+    actions: [
+      IconButton(
+        icon: const Icon(Icons.settings),
+        onPressed: settingsCallback,
+        iconSize: 40,
+      )
+    ],
+    toolbarHeight: 80,
+  );
+}
