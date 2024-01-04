@@ -26,16 +26,3 @@ var appBar = (Widget logo) => AppBar(
       ],
       toolbarHeight: 80,
     );
-
-var makeNavigationBar =
-    (BuildContext context) => NavigationBar(destinations: <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Strona główna',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.pin_drop_outlined),
-            label: 'Mapa',
-          ),
-        ]);
