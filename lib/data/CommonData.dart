@@ -24,7 +24,7 @@ CommonData mockData() {
     (Icons.local_library_outlined, 'Inne'),
   ];
 
-  const N = 100;
+  const N = 10;
   const latMin = 52.1348782;
   const latMax = 52.3219161;
   const lonMin = 20.8023824;

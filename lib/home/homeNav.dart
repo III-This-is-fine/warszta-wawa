@@ -28,7 +28,7 @@ Widget makeHome(BuildContext context, CommonData? _commonData) {
         subtitle('Typy zajęć'),
         types(_commonData!.categories),
         subtitle('Mapa'),
-        makeMap(context, _commonData.markers),
+        makeMapWidget(context, _commonData.markers, 200),
         SizedBox(height: 100),
         // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
       ],

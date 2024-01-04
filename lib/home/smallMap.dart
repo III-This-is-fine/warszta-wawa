@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
+import 'package:warszta_wawa/data/Constants.dart';
 
-var makeMap = (BuildContext context, List<(double, double)> _markers) {
+var makeMapWidget =
+    (BuildContext context, List<(double, double)> _markers, double height) {
   var markers = _markers.map((e) {
     return Marker(
       width: 80.0,
@@ -20,7 +23,7 @@ var makeMap = (BuildContext context, List<(double, double)> _markers) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: SizedBox(
-      height: 200,
+      height: height,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: FlutterMap(
@@ -30,10 +33,9 @@ var makeMap = (BuildContext context, List<(double, double)> _markers) {
           ),
           children: [
             TileLayer(
-              urlTemplate:
-                  'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=Udj6fSqM6nelUHq2HVmP',
+              urlTemplate: mapURL,
               userAgentPackageName: 'com.tif.warsztawawa',
-              tileProvider: CancellableNetworkTileProvider(),
+              tileProvider: FMTC.instance('mapStore').getTileProvider(),
             ),
             MarkerClusterLayerWidget(
               options: MarkerClusterLayerOptions(
