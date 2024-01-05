@@ -10,12 +10,14 @@ var makeMapWidget =
     (BuildContext context, List<(double, double)> _markers, double height) {
   var markers = _markers.map((e) {
     return Marker(
-      width: 80.0,
-      height: 80.0,
+      width: 100.0,
+      height: 100.0,
       point: LatLng(e.$1, e.$2),
       child: Container(
-        child:
-            Icon(Icons.circle, color: Theme.of(context).colorScheme.tertiary),
+        child: Icon(
+          Icons.location_on,
+          color: Theme.of(context).colorScheme.tertiary,
+        ),
       ),
     );
   }).toList();
@@ -45,8 +47,9 @@ var makeMapWidget =
                 builder: (context, markers) {
                   return Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: BorderRadius.circular(20),
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                     child: Center(
                       child: Text(
                         markers.length.toString(),
