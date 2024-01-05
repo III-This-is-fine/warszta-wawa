@@ -51,16 +51,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
+var subtitle = (String text) => Padding(
+  padding: EdgeInsets.only(left: 15, right: 15),
+  //apply padding to all four sides
+  child: Text(
+    text,
+    style: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+);
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
@@ -104,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           () {},
         ),
         body: makeNav(
+          this,
           context,
           _commonData,
           _selectedDestination,
