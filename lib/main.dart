@@ -77,6 +77,19 @@ class MyHomePageState extends State<MyHomePage> {
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
+  Map<String, bool> categories = {};
+
+  bool getCategory(String name) {
+    if (categories.containsKey(name)) {
+      return categories[name]!;
+    } else {
+      return false;
+    }
+  }
+
+  void setCategory(String name, bool value) {
+    categories[name] = value;
+  }
 
   @override
   Widget build(BuildContext context) {
