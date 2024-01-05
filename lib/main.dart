@@ -77,18 +77,85 @@ class MyHomePageState extends State<MyHomePage> {
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
-  Map<String, bool> categories = {};
+  
+  Map<String, bool> categoriesSelected = {};
+  RangeValues currentAgeRange = const RangeValues(9, 12);
+  Map<String, bool> priceSelected = {
+    'Bezpłatne': false,
+    'Płatne': false,
+  };
+  Map<String, bool> periodSelected = {
+    'Cykliczne': false,
+    'Jednorazowe': false,
+  };
+  Map<String, bool> daySelected = {
+    'Poniedziałek': false,
+    'Wtorek': false,
+    'Środa': false,
+    'Czwartek': false,
+    'Piątek': false,
+    'Sobota': false,
+    'Niedziela': false,
+  };
 
   bool getCategory(String name) {
-    if (categories.containsKey(name)) {
-      return categories[name]!;
+    if (categoriesSelected.containsKey(name)) {
+      return categoriesSelected[name]!;
     } else {
       return false;
     }
   }
 
   void setCategory(String name, bool value) {
-    categories[name] = value;
+    categoriesSelected[name] = value;
+  }
+
+  bool getPrice(String name) {
+    if (priceSelected.containsKey(name)) {
+      return priceSelected[name]!;
+    } else {
+      return false;
+    }
+  }
+
+  void setPrice(String name, bool value) {
+    priceSelected[name] = value;
+  }
+
+  void flipPrice(String name) {
+    priceSelected[name] = !priceSelected[name]!;
+  }
+
+  bool getPeriod(String name) {
+    if (periodSelected.containsKey(name)) {
+      return periodSelected[name]!;
+    } else {
+      return false;
+    }
+  }
+
+  void setPeriod(String name, bool value) {
+    periodSelected[name] = value;
+  }
+
+  void flipPeriod(String name) {
+    periodSelected[name] = !periodSelected[name]!;
+  }
+
+  bool getDay(String name) {
+    if (daySelected.containsKey(name)) {
+      return daySelected[name]!;
+    } else {
+      return false;
+    }
+  }
+
+  void setDay(String name, bool value) {
+    daySelected[name] = value;
+  }
+
+  void flipDay(String name) {
+    daySelected[name] = !daySelected[name]!;
   }
 
   @override
