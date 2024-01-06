@@ -108,9 +108,11 @@ Widget makeSearch(
                                     }
                                   },
                                 ),
-                                Text(e.$2,
-                                    textAlign: TextAlign.left,
-                                    textScaler: TextScaler.linear(1.2)),
+                                Text(
+                                  e.$2,
+                                  textAlign: TextAlign.left,
+                                  textScaler: TextScaler.linear(1.2),
+                                ),
                               ],
                             ),
                           ),
