@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'appBar.dart';
-import 'cache/map_cache_common.dart' as cache;
 import 'data/CommonData.dart';
 import 'navs.dart';
 
 import 'package:flutter/gestures.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await cache.initialize();
-
   runApp(const MyApp());
 }
 
