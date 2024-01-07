@@ -4,14 +4,15 @@ import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:warszta_wawa/data/Constants.dart';
+import 'package:warszta_wawa/data/Workshops.dart';
 
 var makeMapWidget =
-    (BuildContext context, List<(double, double)> _markers, double height) {
+    (BuildContext context, List<Workshops> _markers, double height) {
   var markers = _markers.map((e) {
     return Marker(
       width: 100.0,
       height: 100.0,
-      point: LatLng(e.$1, e.$2),
+      point: e.coordinates,
       child: Container(
         child: Icon(
           Icons.location_on,

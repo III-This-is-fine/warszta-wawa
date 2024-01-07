@@ -1,19 +1,27 @@
+import 'package:latlong2/latlong.dart';
+
 class Workshops {
   String title;
   String type;
   String place;
-  String date;
-  String age;
+  LatLng coordinates;
+  String district;
+  String period;
+  String day;
+  (int, int) age;
   String description;
   String price;
 
-  Workshops({
-    required this.title,
-    required this.type,
-    required this.place,
-    required this.date,
-    required this.age,
-    required this.description,
-    required this.price,
-  });
+  Workshops(
+    this.title,
+    this.type,
+    this.place,
+    this.coordinates,
+    this.district,
+    this.period,
+    this.day,
+    this.age,
+    this.description,
+    this.price,
+  );
 }

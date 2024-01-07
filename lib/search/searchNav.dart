@@ -136,7 +136,18 @@ Widget makeSearch(
                         onTap: () {
                           controller.openView();
                         },
+                        onSubmitted: (_) {
+                          print('submitted');
+                          homePageState.setState(() {
+                            homePageState.district = controller.text;
+                          });
+                          controller.openView();
+                        },
                         onChanged: (_) {
+                          print('changed');
+                          homePageState.setState(() {
+                            homePageState.district = controller.text;
+                          });
                           controller.openView();
                         },
                         trailing: [
@@ -169,8 +180,9 @@ Widget makeSearch(
                           title: Text(item),
                           onTap: () {
                             homePageState.setState(() {
-                              controller.closeView(item);
+                              homePageState.district = item;
                             });
+                            controller.closeView(item);
                           },
                         );
                       }).toList();

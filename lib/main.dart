@@ -73,7 +73,9 @@ class MyHomePageState extends State<MyHomePage> {
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
-  
+
+  String otherInput = "";
+  String district = "";
   Map<String, bool> categoriesSelected = {};
   RangeValues currentAgeRange = const RangeValues(9, 12);
   Map<String, bool> priceSelected = {
@@ -182,6 +184,10 @@ class MyHomePageState extends State<MyHomePage> {
     const animationCurve = Curves.easeInOut;
     _commonData = mockData();
 
+    var filteredWorkshops = _commonData!.markers.where((element) {
+        return district == "" || element.district == district;
+    }).toList();
+
     return Scaffold(
         appBar: appBar(
           logo,
@@ -196,6 +202,7 @@ class MyHomePageState extends State<MyHomePage> {
           context,
           _commonData,
           _selectedDestination,
+          filteredWorkshops,
         ),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),

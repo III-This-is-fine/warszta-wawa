@@ -1,10 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:warszta_wawa/data/Workshops.dart';
+import 'package:warszta_wawa/data/WorkshopsData.dart';
 
 class CommonData {
-  List<(double, double)> markers;
+  List<Workshops> markers;
   List<(IconData, String)> categories;
   List<(String, LatLng)> districts;
 
@@ -26,20 +26,6 @@ CommonData mockData() {
     (Icons.accessibility_new_outlined, 'Taniec'),
     (Icons.local_library_outlined, 'Inne'),
   ];
-
-  const N = 10;
-  const latMin = 52.1348782;
-  const latMax = 52.3219161;
-  const lonMin = 20.8023824;
-  const lonMax = 21.2087757;
-
-  var rng = new Random();
-  var markers = List.generate(
-      N,
-      (i) => (
-            rng.nextDouble() * (latMax - latMin) + latMin,
-            rng.nextDouble() * (lonMax - lonMin) + lonMin
-          ));
 
   var distincts = [
     ("Żoliborz", LatLng(0, 0)),
@@ -65,7 +51,7 @@ CommonData mockData() {
   distincts.sort((a, b) => a.$1.compareTo(b.$1));
 
   return CommonData(
-    markers: markers,
+    markers: workshops,
     categories: categories,
     districts: distincts,
   );
