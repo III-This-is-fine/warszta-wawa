@@ -131,6 +131,7 @@ Widget makeSearch(
                       BuildContext context,
                       SearchController controller,
                     ) {
+                      controller.value = TextEditingValue(text: homePageState.district);
                       return SearchBar(
                         controller: controller,
                         padding: const MaterialStatePropertyAll<EdgeInsets>(

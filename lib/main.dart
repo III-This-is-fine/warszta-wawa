@@ -114,6 +114,22 @@ class MyHomePageState extends State<MyHomePage> {
     };
   }
 
+  bool anyCategorySelected() {
+    return categoriesSelected.values.any((element) => element == true);
+  }
+
+  bool anyPriceSelected() {
+    return priceSelected.values.any((element) => element == true);
+  }
+
+  bool anyPeriodSelected() {
+    return periodSelected.values.any((element) => element == true);
+  }
+
+  bool anyDaySelected() {
+    return daySelected.values.any((element) => element == true);
+  }
+
   bool getCategory(String name) {
     if (categoriesSelected.containsKey(name)) {
       return categoriesSelected[name]!;

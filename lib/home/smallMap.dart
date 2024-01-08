@@ -75,8 +75,9 @@ Widget makeMapWidget(
                       child: Text(
                         markers.length.toString(),
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            fontSize: 20),
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   );

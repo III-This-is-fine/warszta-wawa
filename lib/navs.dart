@@ -22,7 +22,7 @@ Widget makeNav(
     case 1:
       return homePageState.showListInsteadOfSearch
           ? homePageState.selectedWorkshop == null
-              ? makeFilteredList(context, _commonData, homePageState)
+              ? makeFilteredList(context, _commonData, homePageState, true)
               : makeSingleWorkshop(context, _commonData, homePageState)
           : makeSearch(homePageState, context, _commonData);
     case 2:

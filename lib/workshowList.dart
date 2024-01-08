@@ -5,7 +5,7 @@ import 'package:warszta_wawa/main.dart';
 import 'data/Workshops.dart';
 
 Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
-    CommonData commonData, MyHomePageState state) {
+    CommonData commonData, MyHomePageState state, bool offset) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: Column(
@@ -15,22 +15,27 @@ Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
       children: [
         Wrap(
           children: workshops
-              .map(
-                (e) => Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Container(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: makeWorkshopTile(e, commonData, state),
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Container(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: makeWorkshopTile(e, commonData, state),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              )
-              .toList(),
+                    ) as Widget,
+                  )
+                  .toList() +
+              [
+                SizedBox(
+                  height: 200,
+                )
+              ],
         ),
       ],
     ),
