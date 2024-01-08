@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warszta_wawa/data/Workshops.dart';
 import 'appBar.dart';
 import 'data/CommonData.dart';
 import 'navs.dart';
@@ -72,6 +73,7 @@ class MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
   bool searchAlreadyHit = false;
   bool showListInsteadOfSearch = false;
+  Workshops? selectedWorkshop;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
@@ -175,6 +177,7 @@ class MyHomePageState extends State<MyHomePage> {
   void onDestinationSelected(int index) {
     setState(() {
       _selectedDestination = index;
+      selectedWorkshop = null;
 
       if (_selectedDestination == 1) {
         _fab_size = 130.0;
@@ -195,6 +198,12 @@ class MyHomePageState extends State<MyHomePage> {
       if (_selectedDestination == 1 && searchAlreadyHit == false) {
         searchAlreadyHit = true;
       }
+    });
+  }
+
+  void setSelectedWorkshop(Workshops workshop) {
+    setState(() {
+      selectedWorkshop = workshop;
     });
   }
 
