@@ -7,14 +7,14 @@ import '../main.dart';
 import 'cathegoryRow.dart';
 import 'smallMap.dart';
 
-Widget makeHome(BuildContext context, CommonData? _commonData) {
+Widget makeHome(MyHomePageState homePageState, BuildContext context, CommonData? _commonData) {
   return SingleChildScrollView(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         subtitle('Typy zajęć'),
-        types(_commonData!.categories),
+        types(_commonData!.categories, homePageState),
         subtitle('Mapa'),
         makeMapWidget(context, _commonData.markers, 200),
         SizedBox(height: 100),

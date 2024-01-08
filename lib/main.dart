@@ -69,7 +69,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  int _selectedDestination = 0;
+  int selectedDestination = 0;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
@@ -178,15 +178,15 @@ class MyHomePageState extends State<MyHomePage> {
 
     void onDestinationSelected(int index) {
       setState(() {
-        _selectedDestination = index;
+        selectedDestination = index;
 
-        if (_selectedDestination == 1) {
+        if (selectedDestination == 1) {
           _fab_size = 130.0;
         } else {
           _fab_size = 100.0;
         }
 
-        if (_selectedDestination == 0) {
+        if (selectedDestination == 0) {
           _isBackVisible = false;
         } else {
           _isBackVisible = true;
@@ -215,14 +215,14 @@ class MyHomePageState extends State<MyHomePage> {
           this,
           context,
           _commonData,
-          _selectedDestination,
+          selectedDestination,
           filteredWorkshops,
         ),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: NavigationBar(
             onDestinationSelected: onDestinationSelected,
-            selectedIndex: _selectedDestination,
+            selectedIndex: selectedDestination,
             backgroundColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
             destinations: <Widget>[

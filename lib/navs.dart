@@ -16,7 +16,7 @@ Widget makeNav(
 ) {
   switch (_selectedDestination) {
     case 0:
-      return makeHome(context, _commonData);
+      return makeHome(homePageState, context, _commonData);
     case 1:
       return makeSearch(homePageState, context, _commonData);
     case 2:
