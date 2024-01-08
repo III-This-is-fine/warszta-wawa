@@ -4,8 +4,8 @@ import 'package:warszta_wawa/main.dart';
 
 import 'data/Workshops.dart';
 
-Widget makeWorkshopList(
-    BuildContext context, List<Workshops> workshops, CommonData commonData, MyHomePageState state) {
+Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
+    CommonData commonData, MyHomePageState state) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: Column(
@@ -47,22 +47,20 @@ Widget makeRichText(String text, String boldText) {
         ),
         TextSpan(
           text: boldText,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ],
     ),
   );
 }
 
-Widget makeWorkshopTile(Workshops workshops, CommonData commonData, MyHomePageState state) {
+Widget makeWorkshopTile(
+    Workshops workshops, CommonData commonData, MyHomePageState state) {
   return GestureDetector(
     onTap: () {
-      print('Workshop tapped');
       state.setState(() {
-        state.searchAlreadyHit = true;
-        state.onDestinationSelected(1);
-        state.showListInsteadOfSearch = true;
-        state.selectedWorkshop = workshops;
+        state.setSelectedWorkshop(workshops);
       });
     },
     child: Column(
@@ -83,7 +81,8 @@ Widget makeWorkshopTile(Workshops workshops, CommonData commonData, MyHomePageSt
                     scrollDirection: Axis.horizontal,
                     child: Text(
                       workshops.title,
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
                   ),
                   makeRichText('Typ: ', workshops.type),

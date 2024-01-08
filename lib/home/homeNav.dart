@@ -17,7 +17,7 @@ Widget makeHome(MyHomePageState homePageState, BuildContext context, CommonData?
         subtitle('Typy zajęć'),
         types(_commonData!.categories, homePageState),
         subtitle('Mapa'),
-        makeMapWidget(context, _commonData.markers, 200),
+        makeMapWidget(context, _commonData.markers, 200, homePageState),
         subtitle('Najczęściej wyszukiwane'),
         makeWorkshopList(context, _commonData.markers.sublist(0, 1), _commonData, homePageState),
         subtitle('Ostatio dodane'),

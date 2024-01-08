@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
@@ -5,18 +7,26 @@ import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_ti
 import 'package:latlong2/latlong.dart';
 import 'package:warszta_wawa/data/Constants.dart';
 import 'package:warszta_wawa/data/Workshops.dart';
+import 'package:warszta_wawa/main.dart';
 
-var makeMapWidget =
-    (BuildContext context, List<Workshops> _markers, double height) {
+Widget makeMapWidget(
+  BuildContext context,
+  List<Workshops> _markers,
+  double height,
+  MyHomePageState state,
+) {
   var markers = _markers.map((e) {
     return Marker(
       width: 100.0,
       height: 100.0,
       point: e.coordinates,
-      child: Container(
-        child: Icon(
-          Icons.location_on,
-          color: Theme.of(context).colorScheme.tertiary,
+      child: MetaData(
+        metaData: e,
+        child: Container(
+          child: Icon(
+            Icons.location_on,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
         ),
       ),
     );
@@ -44,16 +54,29 @@ var makeMapWidget =
                 maxClusterRadius: 45,
                 size: const Size(40, 40),
                 markers: markers,
+                onMarkerTap: (marker) {
+                  var workshop =
+                      (marker.child as MetaData).metaData as Workshops;
+                  state.setState(() {
+                    state.setSelectedWorkshop(workshop);
+                  });
+                },
                 builder: (context, markers) {
                   return Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Theme.of(context).colorScheme.secondary,
+                      border: Border.all(
+                        width: 3,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                      color: Colors.white,
                     ),
                     child: Center(
                       child: Text(
                         markers.length.toString(),
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 20),
                       ),
                     ),
                   );
@@ -65,4 +88,4 @@ var makeMapWidget =
       ),
     ),
   );
-};
+}

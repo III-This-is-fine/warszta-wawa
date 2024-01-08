@@ -26,7 +26,7 @@ Widget makeNav(
               : makeSingleWorkshop(context, _commonData, homePageState)
           : makeSearch(homePageState, context, _commonData);
     case 2:
-      return makeMap(context, workshops);
+      return makeMap(context, workshops, homePageState);
   }
   return Center(child: Text('Nothing to see here...'));
 }

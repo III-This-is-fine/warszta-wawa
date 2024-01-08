@@ -202,9 +202,10 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   void setSelectedWorkshop(Workshops workshop) {
-    setState(() {
-      selectedWorkshop = workshop;
-    });
+    searchAlreadyHit = true;
+    onDestinationSelected(1);
+    showListInsteadOfSearch = true;
+    selectedWorkshop = workshop;
   }
 
   @override
