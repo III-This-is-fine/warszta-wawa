@@ -68,9 +68,12 @@ Widget makeWorkshopTile(Workshops workshops, CommonData commonData) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  workshops.title,
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    workshops.title,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 makeRichText('Typ: ', workshops.type),
               ],

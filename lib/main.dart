@@ -70,6 +70,8 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
+  bool searchAlreadyHit = false;
+  bool showListInsteadOfSearch = false;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
@@ -184,6 +186,14 @@ class MyHomePageState extends State<MyHomePage> {
         _isBackVisible = false;
       } else {
         _isBackVisible = true;
+      }
+
+      if (searchAlreadyHit) {
+        showListInsteadOfSearch = !showListInsteadOfSearch;
+      }
+
+      if (_selectedDestination == 1 && searchAlreadyHit == false) {
+        searchAlreadyHit = true;
       }
     });
   }

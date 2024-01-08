@@ -15,6 +15,7 @@ Widget types(List<(IconData, String)> categories, MyHomePageState homePageState)
                 homePageState.cleanSelections();
                 homePageState.setCategory(e.$2, true);
                 homePageState.onDestinationSelected(1);
+                homePageState.showListInsteadOfSearch = false;
               });
             },
             child: Container(

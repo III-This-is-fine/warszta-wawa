@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warszta_wawa/data/CommonData.dart';
+import 'package:warszta_wawa/list/filteredList.dart';
 
 import 'data/Workshops.dart';
 import 'home/homeNav.dart';
@@ -18,7 +19,9 @@ Widget makeNav(
     case 0:
       return makeHome(homePageState, context, _commonData);
     case 1:
-      return makeSearch(homePageState, context, _commonData);
+      return homePageState.showListInsteadOfSearch
+          ? makeFilteredList(context, _commonData, homePageState)
+          : makeSearch(homePageState, context, _commonData);
     case 2:
       return makeMap(context, workshops);
   }
