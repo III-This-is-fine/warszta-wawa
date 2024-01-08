@@ -82,30 +82,32 @@ class MyHomePageState extends State<MyHomePage> {
   Map<String, bool> periodSelected = {};
   Map<String, bool> daySelected = {};
 
+  MyHomePageState() {
+    cleanSelections();
+  }
+
   void cleanSelections() {
-    setState(() {
-      otherInput = "";
-      district = "";
-      categoriesSelected = {};
-      currentAgeRange = const RangeValues(9, 12);
-      priceSelected = {
-        'Bezpłatne': false,
-        'Płatne': false,
-      };
-      periodSelected = {
-        'Cykliczne': false,
-        'Jednorazowe': false,
-      };
-      daySelected = {
-        'Poniedziałek': false,
-        'Wtorek': false,
-        'Środa': false,
-        'Czwartek': false,
-        'Piątek': false,
-        'Sobota': false,
-        'Niedziela': false,
-      };
-    });
+    otherInput = "";
+    district = "";
+    categoriesSelected = {};
+    currentAgeRange = const RangeValues(9, 12);
+    priceSelected = {
+      'Bezpłatne': false,
+      'Płatne': false,
+    };
+    periodSelected = {
+      'Cykliczne': false,
+      'Jednorazowe': false,
+    };
+    daySelected = {
+      'Poniedziałek': false,
+      'Wtorek': false,
+      'Środa': false,
+      'Czwartek': false,
+      'Piątek': false,
+      'Sobota': false,
+      'Niedziela': false,
+    };
   }
 
   bool getCategory(String name) {
@@ -173,8 +175,6 @@ class MyHomePageState extends State<MyHomePage> {
     const Widget logo = Image(
         image: AssetImage('assets/images/logo.png'),
         alignment: Alignment.center);
-
-    cleanSelections();
 
     void onDestinationSelected(int index) {
       setState(() {
