@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:warszta_wawa/data/CommonData.dart';
+import 'package:warszta_wawa/workshowList.dart';
 
 import '../main.dart';
 import 'cathegoryRow.dart';
@@ -17,6 +18,8 @@ Widget makeHome(MyHomePageState homePageState, BuildContext context, CommonData?
         types(_commonData!.categories, homePageState),
         subtitle('Mapa'),
         makeMapWidget(context, _commonData.markers, 200),
+        subtitle('Najczęściej wyszukiwane'),
+        makeWorkshopList(context, _commonData.markers.sublist(0, 1), _commonData),
         SizedBox(height: 100),
         // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
       ],

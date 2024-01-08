@@ -69,7 +69,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  int selectedDestination = 0;
+  int _selectedDestination = 0;
   double _fab_size = 100.0;
   CommonData? _commonData = null;
   bool _isBackVisible = false;
@@ -170,29 +170,29 @@ class MyHomePageState extends State<MyHomePage> {
     daySelected[name] = !daySelected[name]!;
   }
 
+  void onDestinationSelected(int index) {
+    setState(() {
+      _selectedDestination = index;
+
+      if (_selectedDestination == 1) {
+        _fab_size = 130.0;
+      } else {
+        _fab_size = 100.0;
+      }
+
+      if (_selectedDestination == 0) {
+        _isBackVisible = false;
+      } else {
+        _isBackVisible = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const Widget logo = Image(
         image: AssetImage('assets/images/logo.png'),
         alignment: Alignment.center);
-
-    void onDestinationSelected(int index) {
-      setState(() {
-        selectedDestination = index;
-
-        if (selectedDestination == 1) {
-          _fab_size = 130.0;
-        } else {
-          _fab_size = 100.0;
-        }
-
-        if (selectedDestination == 0) {
-          _isBackVisible = false;
-        } else {
-          _isBackVisible = true;
-        }
-      });
-    }
 
     const animationDuration = Duration(milliseconds: 250);
     const animationCurve = Curves.easeInOut;
@@ -215,14 +215,14 @@ class MyHomePageState extends State<MyHomePage> {
           this,
           context,
           _commonData,
-          selectedDestination,
+          _selectedDestination,
           filteredWorkshops,
         ),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: NavigationBar(
             onDestinationSelected: onDestinationSelected,
-            selectedIndex: selectedDestination,
+            selectedIndex: _selectedDestination,
             backgroundColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
             destinations: <Widget>[

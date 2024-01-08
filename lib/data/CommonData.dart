@@ -15,6 +15,16 @@ class CommonData {
     required this.categories,
     required this.districts,
   });
+
+  IconData getIcon(String type) {
+    var toReturn = Icons.error_outline_outlined;
+    this.categories.forEach((element) {
+      if (element.$2 == type) {
+        toReturn = element.$1;
+      }
+    });
+    return toReturn;
+  }
 }
 
 CommonData mockData() {

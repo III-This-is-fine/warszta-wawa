@@ -14,7 +14,7 @@ Widget types(List<(IconData, String)> categories, MyHomePageState homePageState)
               homePageState.setState(() {
                 homePageState.cleanSelections();
                 homePageState.setCategory(e.$2, true);
-                homePageState.selectedDestination = 1;
+                homePageState.onDestinationSelected(1);
               });
             },
             child: Container(

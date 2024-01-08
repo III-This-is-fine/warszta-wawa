@@ -40,9 +40,11 @@ Widget makeSearch(
                         onChanged: (_) {
                           controller.openView();
                         },
-                        leading: Icon(Icons.search,
-                            color: Theme.of(context).colorScheme.tertiary,
-                            size: 35),
+                        leading: Icon(
+                          Icons.search,
+                          color: Theme.of(context).colorScheme.tertiary,
+                          size: 35,
+                        ),
                         hintText: 'Wpisz co lub gdzie Cię interesuje',
                         hintStyle: MaterialStateProperty.resolveWith(
                             (states) => TextStyle(color: Colors.grey)),
