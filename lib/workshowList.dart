@@ -7,26 +7,31 @@ Widget makeWorkshopList(
     BuildContext context, List<Workshops> workshops, CommonData commonData) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20.0),
-      child: Container(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Wrap(
-                children: workshops
-                    .map((e) => makeWorkshopTile(e, commonData))
-                    .toList(),
-              ),
-            ],
-          ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Wrap(
+          children: workshops
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Container(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: makeWorkshopTile(e, commonData),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+              .toList(),
         ),
-      ),
+      ],
     ),
   );
 }
@@ -81,7 +86,7 @@ Widget makeWorkshopTile(Workshops workshops, CommonData commonData) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          makeRichText('Godzina: ', makeAgeRange(workshops.age)),
+          makeRichText('Wiek: ', makeAgeRange(workshops.age)),
           makeRichText('Cena: ', workshops.price),
         ],
       ),
@@ -90,5 +95,8 @@ Widget makeWorkshopTile(Workshops workshops, CommonData commonData) {
 }
 
 String makeAgeRange((int, int) age) {
+  if (age.$1 == age.$2) {
+    return age.$1.toString() + ' lat';
+  }
   return age.$1.toString() + '-' + age.$2.toString() + ' lat';
 }

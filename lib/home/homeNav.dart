@@ -20,6 +20,8 @@ Widget makeHome(MyHomePageState homePageState, BuildContext context, CommonData?
         makeMapWidget(context, _commonData.markers, 200),
         subtitle('Najczęściej wyszukiwane'),
         makeWorkshopList(context, _commonData.markers.sublist(0, 1), _commonData),
+        subtitle('Ostatio dodane'),
+        makeWorkshopList(context, _commonData.markers.sublist(5, 7), _commonData),
         SizedBox(height: 100),
         // Tricky way to add padding to the bottom, so that the bottom navigation bar doesn't cover the content
       ],
