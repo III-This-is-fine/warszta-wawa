@@ -48,16 +48,16 @@ class MyApp extends StatelessWidget {
 }
 
 var subtitle = (String text) => Padding(
-  padding: EdgeInsets.only(left: 15, right: 15),
-  //apply padding to all four sides
-  child: Text(
-    text,
-    style: TextStyle(
-      fontSize: 36,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-);
+      padding: EdgeInsets.only(left: 15, right: 15),
+      //apply padding to all four sides
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 36,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -78,23 +78,35 @@ class MyHomePageState extends State<MyHomePage> {
   String district = "";
   Map<String, bool> categoriesSelected = {};
   RangeValues currentAgeRange = const RangeValues(9, 12);
-  Map<String, bool> priceSelected = {
-    'Bezpłatne': false,
-    'Płatne': false,
-  };
-  Map<String, bool> periodSelected = {
-    'Cykliczne': false,
-    'Jednorazowe': false,
-  };
-  Map<String, bool> daySelected = {
-    'Poniedziałek': false,
-    'Wtorek': false,
-    'Środa': false,
-    'Czwartek': false,
-    'Piątek': false,
-    'Sobota': false,
-    'Niedziela': false,
-  };
+  Map<String, bool> priceSelected = {};
+  Map<String, bool> periodSelected = {};
+  Map<String, bool> daySelected = {};
+
+  void cleanSelections() {
+    setState(() {
+      otherInput = "";
+      district = "";
+      categoriesSelected = {};
+      currentAgeRange = const RangeValues(9, 12);
+      priceSelected = {
+        'Bezpłatne': false,
+        'Płatne': false,
+      };
+      periodSelected = {
+        'Cykliczne': false,
+        'Jednorazowe': false,
+      };
+      daySelected = {
+        'Poniedziałek': false,
+        'Wtorek': false,
+        'Środa': false,
+        'Czwartek': false,
+        'Piątek': false,
+        'Sobota': false,
+        'Niedziela': false,
+      };
+    });
+  }
 
   bool getCategory(String name) {
     if (categoriesSelected.containsKey(name)) {
@@ -162,6 +174,8 @@ class MyHomePageState extends State<MyHomePage> {
         image: AssetImage('assets/images/logo.png'),
         alignment: Alignment.center);
 
+    cleanSelections();
+
     void onDestinationSelected(int index) {
       setState(() {
         _selectedDestination = index;
@@ -185,7 +199,7 @@ class MyHomePageState extends State<MyHomePage> {
     _commonData = mockData();
 
     var filteredWorkshops = _commonData!.markers.where((element) {
-        return district == "" || element.district == district;
+      return district == "" || element.district == district;
     }).toList();
 
     return Scaffold(

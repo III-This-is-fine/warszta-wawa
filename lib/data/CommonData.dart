@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:warszta_wawa/data/Workshops.dart';
@@ -50,8 +52,15 @@ CommonData mockData() {
 
   distincts.sort((a, b) => a.$1.compareTo(b.$1));
 
+  var workshopsFiltered = workshops.toList();
+
+  var today = DateTime.now();
+  var rand = new Random(today.year + today.month + today.day);
+  workshopsFiltered.shuffle(rand);
+  var take = 100;
+
   return CommonData(
-    markers: workshops,
+    markers: workshopsFiltered.sublist(0, take),
     categories: categories,
     districts: distincts,
   );
