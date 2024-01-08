@@ -46,7 +46,7 @@ Widget makeRichText(String text, String boldText) {
         ),
         TextSpan(
           text: boldText,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ],
     ),
