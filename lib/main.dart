@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:warszta_wawa/data/Workshops.dart';
 import 'appBar.dart';
 import 'data/CommonData.dart';
@@ -37,10 +38,12 @@ class MyApp extends StatelessWidget {
       scrollBehavior: WebScroll(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: primary,
-            primary: primary,
-            secondary: secondary,
-            tertiary: tertiary),
+          seedColor: primary,
+          primary: primary,
+          secondary: secondary,
+          tertiary: tertiary,
+        ),
+        fontFamily: GoogleFonts.rubik().fontFamily,
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Warszta Wawa'),
@@ -54,7 +57,7 @@ var subtitle = (String text) => Padding(
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 36,
+          fontSize: 32,
           fontWeight: FontWeight.bold,
         ),
       ),

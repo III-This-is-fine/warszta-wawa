@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:warszta_wawa/data/Workshops.dart';
+import 'package:warszta_wawa/data/WorkshopsData.dart';
 
 import '../data/CommonData.dart';
 import '../main.dart';
 
 Widget makeSingleWorkshop(
     BuildContext context, CommonData? commonData, MyHomePageState state) {
+  Workshops? workshops = state.selectedWorkshop;
+  if (workshops == null) {
+    return Text('Something went wrong!');
+  }
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: SingleChildScrollView(
@@ -15,7 +21,34 @@ Widget makeSingleWorkshop(
         children: <Widget>[
           makeTitle(
             context,
-            Text('xd'),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    workshops.title,
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: makeRichText(
+                    'Miejsce: ',
+                    'Dzielnica ' + workshops.district + ", Warszawa",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: makeRichText(
+                    'Adres: ',
+                    makeAddress(workshops.place),
+                  ),
+                ),
+              ],
+            ),
             Colors.white,
           ),
           SizedBox(height: 100),
@@ -23,6 +56,11 @@ Widget makeSingleWorkshop(
       ),
     ),
   );
+}
+
+String makeAddress(String address) {
+  var expectedEnd = ', 00-001 Warszawa, Poland';
+  return address.substring(0, address.length - expectedEnd.length);
 }
 
 Widget makeTitle(BuildContext context, Widget inside, Color color) {
@@ -44,6 +82,24 @@ Widget makeTitle(BuildContext context, Widget inside, Color color) {
         padding: const EdgeInsets.all(10.0),
         child: inside,
       ),
+    ),
+  );
+}
+
+Widget makeRichText(String text, String boldText) {
+  return RichText(
+    text: TextSpan(
+      children: <TextSpan>[
+        TextSpan(
+          text: text,
+          style: const TextStyle(color: Colors.black54),
+        ),
+        TextSpan(
+          text: boldText,
+          style:
+          const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ],
     ),
   );
 }

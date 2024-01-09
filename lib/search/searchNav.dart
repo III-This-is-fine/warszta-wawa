@@ -211,7 +211,7 @@ Widget makeSearch(
                     });
                   },
                 ),
-                Text('\n'),
+                Text(''),
                 subtitle('Cena'),
                 SizedBox(
                   height: 50,
