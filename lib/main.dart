@@ -89,8 +89,25 @@ class MyHomePageState extends State<MyHomePage> {
   Map<String, bool> periodSelected = {};
   Map<String, bool> daySelected = {};
 
+  Map<String, AssetImage> imageAssets = {};
+
   MyHomePageState() {
     cleanSelections();
+
+    imageAssets = Map.fromIterable(
+      [
+        ('Sportowe'),
+        ('Artystyczne'),
+        ('Naukowe'),
+        ('Muzyczne'),
+        ('Językowe'),
+        ('Fitness'),
+        ('Taniec'),
+        ('Inne'),
+      ],
+      key: (e) => e,
+      value: (e) => AssetImage('assets/workshops/$e.png'),
+    );
   }
 
   void cleanSelections() {

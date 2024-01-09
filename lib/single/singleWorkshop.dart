@@ -19,7 +19,7 @@ Widget makeSingleWorkshop(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          makeTitle(
+          makeTile(
             context,
             Column(
               children: [
@@ -51,8 +51,34 @@ Widget makeSingleWorkshop(
             ),
             Colors.white,
           ),
+          loadImage(workshops, state),
           SizedBox(height: 100),
         ],
+      ),
+    ),
+  );
+}
+
+Widget loadImage(Workshops workshops, MyHomePageState state) {
+  AssetImage? image = state.imageAssets[workshops.type];
+  if (image == null) {
+    return Text('Something went wrong!');
+  }
+  return Padding(
+    padding: const EdgeInsets.only(top: 16.0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: ClipRect(
+        child: Container(
+          child: Align(
+            alignment: Alignment.center,
+            widthFactor: 1,
+            heightFactor: 0.7,
+            child: Image(
+              image: image,
+            ),
+          ),
+        ),
       ),
     ),
   );
@@ -63,7 +89,7 @@ String makeAddress(String address) {
   return address.substring(0, address.length - expectedEnd.length);
 }
 
-Widget makeTitle(BuildContext context, Widget inside, Color color) {
+Widget makeTile(BuildContext context, Widget inside, Color color) {
   return Padding(
     padding: const EdgeInsets.only(top: 16.0),
     child: Container(
@@ -97,7 +123,7 @@ Widget makeRichText(String text, String boldText) {
         TextSpan(
           text: boldText,
           style:
-          const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ],
     ),
