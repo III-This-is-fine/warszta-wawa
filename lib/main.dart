@@ -264,6 +264,9 @@ class MyHomePageState extends State<MyHomePage> {
           _isBackVisible,
           () {
             onDestinationSelected(0);
+            selectedWorkshop = null;
+            searchAlreadyHit = false;
+            showListInsteadOfSearch = false;
           },
           () {},
         ),
