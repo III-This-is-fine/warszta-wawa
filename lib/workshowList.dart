@@ -16,15 +16,22 @@ Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
         Wrap(
           children: workshops
                   .map(
-                    (e) => Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: makeWorkshopTile(e, commonData, state),
+                    (e) => GestureDetector(
+                      onTap: () {
+                        state.setState(() {
+                          state.setSelectedWorkshop(e);
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Container(
+                            color: Theme.of(context).colorScheme.primaryContainer,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: makeWorkshopTile(e, commonData, state),
+                            ),
                           ),
                         ),
                       ),
@@ -62,54 +69,47 @@ Widget makeRichText(String text, String boldText) {
 
 Widget makeWorkshopTile(
     Workshops workshops, CommonData commonData, MyHomePageState state) {
-  return GestureDetector(
-    onTap: () {
-      state.setState(() {
-        state.setSelectedWorkshop(workshops);
-      });
-    },
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Icon(
-              commonData.getIcon(workshops.type),
-              size: 60,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      workshops.title,
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                    ),
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          Icon(
+            commonData.getIcon(workshops.type),
+            size: 60,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    workshops.title,
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
-                  makeRichText('Typ: ', workshops.type),
-                ],
-              ),
+                ),
+                makeRichText('Typ: ', workshops.type),
+              ],
             ),
-          ],
-        ),
-        SizedBox(height: 10),
-        makeRichText('Miejsce: ', workshops.place),
-        SizedBox(height: 10),
-        makeRichText('Termin: ', workshops.day),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            makeRichText('Wiek: ', makeAgeRange(workshops.age)),
-            makeRichText('Cena: ', workshops.price),
-          ],
-        ),
-      ],
-    ),
+          ),
+        ],
+      ),
+      SizedBox(height: 10),
+      makeRichText('Miejsce: ', workshops.place),
+      SizedBox(height: 10),
+      makeRichText('Termin: ', workshops.day),
+      SizedBox(height: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          makeRichText('Wiek: ', makeAgeRange(workshops.age)),
+          makeRichText('Cena: ', workshops.price),
+        ],
+      ),
+    ],
   );
 }
 
