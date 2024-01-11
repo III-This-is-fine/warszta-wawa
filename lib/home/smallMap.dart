@@ -74,7 +74,7 @@ Widget makeMapWidget(
                         markers.length.toString(),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 20,
+                          fontSize: getMarkerFontSize(markers.length.toString())
                         ),
                       ),
                     ),
@@ -87,4 +87,11 @@ Widget makeMapWidget(
       ),
     ),
   );
+}
+
+double getMarkerFontSize(String length) {
+  if (length.length > 2) {
+    return 16;
+  }
+  return 20;
 }
