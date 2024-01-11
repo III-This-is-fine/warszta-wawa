@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:warszta_wawa/data/CommonData.dart';
 import 'package:warszta_wawa/main.dart';
@@ -23,6 +22,7 @@ Widget makeFilteredList(
       commonData,
       state,
       offset,
+      330
     ),
   );
 }

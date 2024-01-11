@@ -5,10 +5,16 @@ import 'package:warszta_wawa/main.dart';
 
 import 'data/Workshops.dart';
 
-Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
-    CommonData commonData, MyHomePageState state, bool offset) {
+Widget makeWorkshopList(
+  BuildContext context,
+  List<Workshops> workshops,
+  CommonData commonData,
+  MyHomePageState state,
+  bool offset,
+  double sizedBoxHeight,
+) {
   return Padding(
-    padding: const EdgeInsets.all(15.0),
+    padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +48,7 @@ Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
                   .toList() +
               [
                 SizedBox(
-                  height: 330,
+                  height: sizedBoxHeight,
                 )
               ],
         ),
