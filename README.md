@@ -16,6 +16,22 @@ Should work with:
 - [x] Android
 - [ ] iOS (not tested)
 
+## Run
+
+Run for web (release) with:
+
+```bash
+flutter run -d Chrome --release --web-renderer canvaskit
+```
+
+## Build
+
+Build for Android (release) with:
+
+```bash
+flutter build apk --release
+```
+
 ## Icon
 
 If you want to change the icon, change it in at `assets/images/icon.png` and run:
