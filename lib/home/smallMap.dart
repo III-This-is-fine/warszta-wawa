@@ -12,6 +12,7 @@ Widget makeMapWidget(
   List<Workshops> _markers,
   double height,
   MyHomePageState state,
+  LatLng? _initialCenter,
 ) {
   var markers = _markers.map((e) {
     return Marker(
@@ -30,6 +31,10 @@ Widget makeMapWidget(
     );
   }).toList();
 
+  LatLng initialCenter = (_initialCenter == null)
+      ? LatLng(52.2117577, 20.9823755)
+      : _initialCenter;
+
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: SizedBox(
@@ -37,8 +42,8 @@ Widget makeMapWidget(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: FlutterMap(
-          options: const MapOptions(
-            initialCenter: LatLng(52.2117577, 20.9823755),
+          options: MapOptions(
+            initialCenter: initialCenter,
             initialZoom: 16,
           ),
           children: [
@@ -73,9 +78,9 @@ Widget makeMapWidget(
                       child: Text(
                         markers.length.toString(),
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: getMarkerFontSize(markers.length.toString())
-                        ),
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize:
+                                getMarkerFontSize(markers.length.toString())),
                       ),
                     ),
                   );

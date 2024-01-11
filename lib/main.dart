@@ -215,7 +215,9 @@ class MyHomePageState extends State<MyHomePage> {
   void onDestinationSelected(int index) {
     setState(() {
       _selectedDestination = index;
-      selectedWorkshop = null;
+      if (index == 0) {
+        selectedWorkshop = null;
+      }
 
       if (_selectedDestination == 1) {
         _fab_size = 130.0;
@@ -264,10 +266,19 @@ class MyHomePageState extends State<MyHomePage> {
           logo,
           _isBackVisible,
           () {
-            onDestinationSelected(0);
-            selectedWorkshop = null;
-            searchAlreadyHit = false;
-            showListInsteadOfSearch = false;
+            if (_selectedDestination == 1 &&
+                selectedWorkshop != null &&
+                searchAlreadyHit &&
+                showListInsteadOfSearch) {
+              setState(() {
+                selectedWorkshop = null;
+              });
+            } else {
+              onDestinationSelected(0);
+              selectedWorkshop = null;
+              searchAlreadyHit = false;
+              showListInsteadOfSearch = false;
+            }
           },
           () {},
         ),
