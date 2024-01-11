@@ -200,7 +200,7 @@ Widget makeSearch(
                   inactiveColor: Colors.grey,
                   max: 15,
                   min: 3,
-                  divisions: 15 - 3 + 1,
+                  divisions: 15 - 3,
                   labels: RangeLabels(
                     homePageState.currentAgeRange.start.round().toString(),
                     homePageState.currentAgeRange.end.round().toString(),
