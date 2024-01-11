@@ -29,9 +29,6 @@ Widget makeFilteredList(
 }
 
 bool doRangesIntersect(RangeValues currentAge, (int, int) age) {
-  print(currentAge);
-  print(age);
-
   double l = max(currentAge.start, age.$1 as double);
   double r = min(currentAge.end, age.$2 as double);
 
