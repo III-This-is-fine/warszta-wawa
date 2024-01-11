@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:warszta_wawa/data/Workshops.dart';
+import 'package:warszta_wawa/list/filteredList.dart';
 import 'appBar.dart';
 import 'data/CommonData.dart';
 import 'navs.dart';
@@ -255,9 +256,8 @@ class MyHomePageState extends State<MyHomePage> {
     const animationCurve = Curves.easeInOut;
     _commonData = mockData();
 
-    var filteredWorkshops = _commonData!.markers.where((element) {
-      return district == "" || element.district == district;
-    }).toList();
+    var filteredWorkshops =
+        _commonData!.markers.where((e) => testWorkshop(e, this)).toList();
 
     return Scaffold(
         appBar: appBar(
