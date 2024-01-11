@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_scroll/text_scroll.dart';
 import 'package:warszta_wawa/data/CommonData.dart';
 import 'package:warszta_wawa/main.dart';
 
@@ -27,7 +28,8 @@ Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: Container(
-                            color: Theme.of(context).colorScheme.primaryContainer,
+                            color:
+                                Theme.of(context).colorScheme.primaryContainer,
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: makeWorkshopTile(e, commonData, state),
@@ -78,21 +80,23 @@ Widget makeWorkshopTile(
             commonData.getIcon(workshops.type),
             size: 60,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Text(
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextScroll(
                     workshops.title,
-                    style:
-                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    mode: TextScrollMode.bouncing,
+                    delayBefore: Duration(seconds: 2),
+                    pauseBetween: Duration(seconds: 2),
+                    textAlign: TextAlign.right,
                   ),
-                ),
-                makeRichText('Typ: ', workshops.type),
-              ],
+                  makeRichText('Typ: ', workshops.type),
+                ],
+              ),
             ),
           ),
         ],
