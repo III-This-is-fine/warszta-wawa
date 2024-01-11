@@ -83,6 +83,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   String otherInput = "";
   String district = "";
+  String keywords = "";
   Map<String, bool> categoriesSelected = {};
   RangeValues currentAgeRange = const RangeValues(9, 12);
   Map<String, bool> priceSelected = {};

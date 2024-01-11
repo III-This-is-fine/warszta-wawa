@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import '../data/CommonData.dart';
 import '../main.dart';
 
@@ -30,6 +31,8 @@ Widget makeSearch(
                       BuildContext context,
                       SearchController controller,
                     ) {
+                      controller.value =
+                          TextEditingValue(text: homePageState.keywords);
                       return SearchBar(
                         controller: controller,
                         padding: const MaterialStatePropertyAll<EdgeInsets>(
@@ -37,8 +40,16 @@ Widget makeSearch(
                         onTap: () {
                           controller.openView();
                         },
-                        onChanged: (_) {
+                        onChanged: (item) {
                           controller.openView();
+                          homePageState.setState(() {
+                            homePageState.keywords = item;
+                          });
+                        },
+                        onSubmitted: (item) {
+                          homePageState.setState(() {
+                            homePageState.keywords = item;
+                          });
                         },
                         leading: Icon(
                           Icons.search,
@@ -52,8 +63,9 @@ Widget makeSearch(
                           (states) => RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100.0),
                             side: BorderSide(
-                                color: Theme.of(context).colorScheme.tertiary,
-                                width: 2.0),
+                              color: Theme.of(context).colorScheme.tertiary,
+                              width: 2.0,
+                            ),
                           ),
                         ),
                       );
@@ -61,14 +73,25 @@ Widget makeSearch(
                       BuildContext context,
                       SearchController controller,
                     ) {
-                      return List<ListTile>.generate(5, (int index) {
-                        final String item = 'item $index';
+                      return ([controller.text] + [
+                        'Warsztaty z rysowania Wola',
+                        'Bemowo kursy językowe',
+                        'Zajęcia Urysnowo',
+                        'Targówek angielski za darmo',
+                        'Piłka nożna dla dzieci',
+                        'Karate po angielsku',
+                        'Programowanie HTML',
+                        'Piosenki bałkańskie',
+                        'Grać jak Iga Świątek',
+                        'Gdzie łyżwy tanio',
+                      ]).map((item) {
                         return ListTile(
                           title: Text(item),
                           onTap: () {
                             homePageState.setState(() {
-                              controller.closeView(item);
+                              homePageState.keywords = item;
                             });
+                            controller.closeView(item);
                           },
                         );
                       });
@@ -131,7 +154,8 @@ Widget makeSearch(
                       BuildContext context,
                       SearchController controller,
                     ) {
-                      controller.value = TextEditingValue(text: homePageState.district);
+                      controller.value =
+                          TextEditingValue(text: homePageState.district);
                       return SearchBar(
                         controller: controller,
                         padding: const MaterialStatePropertyAll<EdgeInsets>(
@@ -140,14 +164,12 @@ Widget makeSearch(
                           controller.openView();
                         },
                         onSubmitted: (_) {
-                          print('submitted');
                           homePageState.setState(() {
                             homePageState.district = controller.text;
                           });
                           controller.openView();
                         },
                         onChanged: (_) {
-                          print('changed');
                           homePageState.setState(() {
                             homePageState.district = controller.text;
                           });
@@ -168,8 +190,9 @@ Widget makeSearch(
                           (states) => RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100.0),
                             side: BorderSide(
-                                color: Theme.of(context).colorScheme.tertiary,
-                                width: 2.0),
+                              color: Theme.of(context).colorScheme.tertiary,
+                              width: 2.0,
+                            ),
                           ),
                         ),
                       );
@@ -177,7 +200,8 @@ Widget makeSearch(
                       BuildContext context,
                       SearchController controller,
                     ) {
-                      return _commonData.districts.map((dis) {
+                      return ([("", LatLng(0, 0))] + _commonData.districts)
+                          .map((dis) {
                         final String item = dis.$1;
                         return ListTile(
                           title: Text(item),
