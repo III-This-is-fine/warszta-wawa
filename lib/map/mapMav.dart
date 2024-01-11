@@ -12,8 +12,6 @@ Widget makeMap(BuildContext context, List<Workshops> workshops, MyHomePageState 
   Size size = view.physicalSize / view.devicePixelRatio;
   double height = size.height;
 
-  print(state.selectedWorkshop);
-
   LatLng? initialCenter;
   if (state.selectedWorkshop != null) {
     initialCenter = state.selectedWorkshop!.coordinates;
