@@ -40,7 +40,7 @@ Widget makeWorkshopList(BuildContext context, List<Workshops> workshops,
                   .toList() +
               [
                 SizedBox(
-                  height: 200,
+                  height: 330,
                 )
               ],
         ),

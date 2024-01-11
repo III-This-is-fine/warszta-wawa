@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:warszta_wawa/data/CommonData.dart';
 import 'package:warszta_wawa/main.dart';
 
@@ -11,8 +14,7 @@ Widget makeFilteredList(
     return ((!state.anyCategorySelected() ||
             state.categoriesSelected[workshop.type] == true) &&
         (state.district.isEmpty || state.district == workshop.district) &&
-        (state.currentAgeRange.end >= workshop.age.$1 ||
-            workshop.age.$2 >= state.currentAgeRange.start) &&
+        (doRangesIntersect(state.currentAgeRange, workshop.age)) &&
         (!state.anyPriceSelected() ||
             state.priceSelected[workshop.price] == true) &&
         (!state.anyPeriodSelected() ||
@@ -24,4 +26,14 @@ Widget makeFilteredList(
 
   return SingleChildScrollView(
       child: makeWorkshopList(context, workshopsToShow, commonData, state, offset));
+}
+
+bool doRangesIntersect(RangeValues currentAge, (int, int) age) {
+  print(currentAge);
+  print(age);
+
+  double l = max(currentAge.start, age.$1 as double);
+  double r = min(currentAge.end, age.$2 as double);
+
+  return l <= r;
 }
